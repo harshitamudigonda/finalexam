@@ -14,7 +14,7 @@
   <groupId>com.klef</groupId>
   <artifactId>GroceryListApp</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
 
   <properties>
     <java.version>21</java.version>
@@ -55,7 +55,7 @@
   </dependencies>
 
   <build>
-  <finalName>GroceryApp</finalName>
+  <finalName>GroceryApp-final lab</finalName>
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>

@@ -71,7 +71,81 @@ export default function App() {
 
   return (
     <div className="page">
-      {/* ... rest of your JSX ... */}
+      <header className="header">
+        <h1>Your Grocery App</h1>
+      </header>
+
+      <main className="container">
+        <section className="controls">
+          <div>
+            <label className="label">Search</label>
+            <input
+              value={search}
+              onChange={handleSearch}
+              className="input"
+              placeholder="Search groceries..."
+            />
+          </div>
+
+          <form onSubmit={handleAdd} className="add-form">
+            <label className="label">Add grocery</label>
+            <input
+              value={form.name}
+              onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+              className="input"
+              placeholder="Name"
+            />
+            <input
+              type="number"
+              value={form.quantity}
+              onChange={e => setForm(f => ({ ...f, quantity: Number(e.target.value) }))}
+              className="input small"
+              min="1"
+            />
+            <button className="btn">Add</button>
+          </form>
+        </section>
+
+        <section className="list">
+          <h2 className="section-title">Grocery list</h2>
+          {loading ? <p>Loading...</p> : (
+            <ul>
+              {groceries.map(item => (
+                <li key={item.id} className="item">
+                  {editingId === item.id ? (
+                    <>
+                      <input
+                        value={editingForm.name}
+                        onChange={e => setEditingForm(f => ({ ...f, name: e.target.value }))}
+                        className="input"
+                      />
+                      <input
+                        type="number"
+                        value={editingForm.quantity}
+                        onChange={e => setEditingForm(f => ({ ...f, quantity: Number(e.target.value) }))}
+                        className="input small"
+                        min="1"
+                      />
+                      <button className="btn" onClick={() => saveEdit(item.id)}>Save</button>
+                      <button className="btn ghost" onClick={cancelEdit}>Cancel</button>
+                    </>
+                  ) : (
+                    <>
+                      <span className="item-name">{item.name}</span>
+                      <span className="item-qty">x{item.quantity}</span>
+                      <div className="item-actions">
+                        <button className="btn ghost" onClick={() => startEdit(item)}>Edit</button>
+                        <button className="btn danger" onClick={() => handleDelete(item.id)}>Delete</button>
+                      </div>
+                    </>
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+      </main>
     </div>
   );
 }
+
