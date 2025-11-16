@@ -26,15 +26,15 @@ jobs:
       - name: Build and push backend image
         uses: docker/build-push-action@v5
         with:
-          context: ./GroceryListApp
-          file: ./GroceryListApp/backend.Dockerfile
+          context: ./BACKEND/GroceryListApp
+          file: ./BACKEND/GroceryListApp/backend.Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/final-backend:latest
 
       - name: Build and push frontend image
         uses: docker/build-push-action@v5
         with:
-          context: ./grocerylist
-          file: ./grocerylist/frontend.Dockerfile
+          context: ./FRONTEND/grocerylist
+          file: ./FRONTEND/grocerylist/frontend.Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/final-frontend:latest
